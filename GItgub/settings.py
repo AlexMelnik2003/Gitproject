@@ -128,3 +128,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'main'
+LOGOUT_REDIRECT_URL = 'main'
+
+RECAPTCHA_PUBLIC_KEY = '6LekF6EpAAAAAO9dv8cjWRk87xjaRmzNWlA7Bv9U'
+RECAPTCHA_PRIVATE_KEY = '6LekF6EpAAAAAMM1xwdeC_cdZkvnhuIb00nz_g8k'

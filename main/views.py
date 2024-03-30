@@ -15,6 +15,7 @@ def index(request):
 
 
 
+
 class UserRegister(CreateView):
     model = User
     template_name = 'registration/reg.html'
