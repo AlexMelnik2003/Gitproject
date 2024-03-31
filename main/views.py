@@ -25,3 +25,11 @@ class MyDetailView(DetailView):
     template_name = 'detail/detail.html'
     context_object_name = 'inventar'
     slug_field = 'slug'
+
+def employee(request):
+    employee = Employee.objects.all()
+    return render(request, 'employee.html', {'employee': employee})
+
+def inventar1(request):
+    inventar = Inventar.objects.all()
+    return render(request, 'inventar.html', {'inventar': inventar})
