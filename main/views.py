@@ -1,24 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 from .models import Employee, Inventar
-from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView
-
-from .forms import UserForm
 
 
-# Create your views here.
-def index(request):
-    return render(request, "index.html")
+def main(request):
+    return render(request, "main.html")
 
 
-class UserRegister(CreateView):
-    model = User
-    template_name = 'registration/reg.html'
-    form_class = UserForm
-    success_url = reverse_lazy('login')
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            users = form.save()
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/reg.html', {'form': form})
 
 
 class MyDetailView(DetailView):
