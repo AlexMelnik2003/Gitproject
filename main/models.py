@@ -10,8 +10,6 @@ class Employee(models.Model):
     def __str__(self):
         return self.name2
 
-    def __str__(self):
-        return self.name1
 
 class Inventar(models.Model):
     name = models.CharField('Название',max_length=100)
