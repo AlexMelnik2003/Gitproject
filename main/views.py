@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
 from .models import Employee, Inventar
@@ -26,10 +27,12 @@ class MyDetailView(DetailView):
     context_object_name = 'inventar'
     slug_field = 'slug'
 
+@login_required
 def employee(request):
     employee = Employee.objects.all()
     return render(request, 'employee.html', {'employee': employee})
 
+@login_required
 def inventar1(request):
     inventar = Inventar.objects.all()
     return render(request, 'inventar.html', {'inventar': inventar})
