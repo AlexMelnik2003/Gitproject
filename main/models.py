@@ -8,7 +8,7 @@ class Employee(models.Model):
     status = models.CharField('Должность',max_length=50)
 
     def __str__(self):
-        return self.name1
+        return self.name2
 
 class Inventar(models.Model):
     name = models.CharField('Название',max_length=100)
