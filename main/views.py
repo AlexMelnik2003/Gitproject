@@ -1,24 +1,24 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
 from .forms import RegisterForm
 from .models import Employee, Inventar
 from django.shortcuts import render
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 
 
 def main(request):
     return render(request, "main.html")
 
 
-def register(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            users = form.save()
-            return redirect('login')
-    else:
-        form = RegisterForm()
-    return render(request, 'registration/reg.html', {'form': form})
+
+class UserRegister(CreateView):
+    model = User
+    template_name = 'registration/reg.html'
+    form_class = RegisterForm
+    success_url = reverse_lazy('login')
 
 
 class MyDetailView(DetailView):
