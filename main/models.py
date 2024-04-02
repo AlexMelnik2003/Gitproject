@@ -8,6 +8,9 @@ class Employee(models.Model):
     status = models.CharField('Должность',max_length=50)
 
 
+    def __str__(self):
+        return self.name1
+
 class Inventar(models.Model):
     name = models.CharField('Название',max_length=100)
     category = models.CharField('Категория',max_length=100)

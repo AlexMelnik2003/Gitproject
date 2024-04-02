@@ -1,10 +1,22 @@
+{% extends 'layout.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block mytitle %}Подробнее{% endblock %}</title>
 </head>
 <body>
+{% block content %}
+
+
+<li>{{i.name}}</li>
+<li><img src="{{ i.image.url }}" alt="Моя картинка" style="width: 100px; hieght: 100px;"></li>
+<li>{{i.category}}</li>
+<li>{{i.kod}}</li>
+<li>{{i.price}}</li>>
+{% endblock %}
+
 
 </body>
 </html>

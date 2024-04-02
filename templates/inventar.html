@@ -17,11 +17,9 @@
 {% for i in employee %}
 <ul>
     <li>{{i.name}}</li>
-    <li>{{i.category}}</li>
-    <li>{{i.kod}}</li>
-    <li>{{i.price}}</li>
     <li><img src="{{ i.image.url }}" alt="Моя картинка" style="width: 100px; hieght: 100px;"></li>
-    <li><a href="{% url 'mydetail' i.id %}">Подробнее</a></li>
+    <li>{{i.price}}</li>
+    <li><button type="button" class="btn btn-info"><a href="{% url 'detail' slug=i.slug %}">Подробнее</a></button></li>
 </ul>
 {% endfor %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

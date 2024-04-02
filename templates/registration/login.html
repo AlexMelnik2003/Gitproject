@@ -14,9 +14,8 @@
         <form method="post">
             Login
             <br>
-            <img src="{% static 'media/welcome.jpg' %}" class="welcome">
-            {% csrf_token %}
-            {{ form.as_p }}
+<div class="user">{% csrf_token %}
+    {{ form.as_p }}</div>
             <button type="submit" class="btn btn-outline-success">Login</button>
         </form>
     </div>
