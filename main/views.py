@@ -13,7 +13,6 @@ def main(request):
     return render(request, "main.html")
 
 
-
 class UserRegister(CreateView):
     model = User
     template_name = 'registration/reg.html'
