@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-
-from .forms import RegisterForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from .forms import RegisterForm, EmployeeForm, InventarForm
 from .models import Employee, Inventar
 from django.shortcuts import render
 from django.views.generic import DetailView, CreateView
@@ -26,6 +26,28 @@ class MyDetailView(DetailView):
     context_object_name = 'inventar'
     slug_field = 'slug'
 
+
+
+def employee_forms(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('employee')
+    else:
+        form = EmployeeForm()
+    return render(request, 'forms/employee_forms.html', {'form': form})
+
+
+def inventar_forms(request):
+    if request.method == 'POST':
+        form = InventarForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inventar')
+    else:
+        form = InventarForm()
+    return render(request, 'forms/inventar_forms.html', {'form': form})
 @login_required
 def employee(request):
     employee = Employee.objects.all()
