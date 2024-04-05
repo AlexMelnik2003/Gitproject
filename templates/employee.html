@@ -3,25 +3,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сотрудники</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Добавим немного стилей для улучшения внешнего вида */
+        body {
+            padding-top: 60px; /* Учитываем высоту навигационной панели */
+        }
+        .navbar-brand {
+            margin-left: 45%; /* Центрируем название */
+        }
+        .employee-list {
+            list-style-type: none; /* Убираем маркеры у списка сотрудников */
+            padding: 0;
+        }
+        .employee-list li {
+            margin-bottom: 10px; /* Добавляем немного отступа между элементами списка */
+        }
+        .employee-detail-link {
+            color: #007bff; /* Цвет ссылки "Подробнее" */
+            text-decoration: none; /* Убираем подчеркивание у ссылки */
+        }
+        .employee-detail-link:hover {
+            text-decoration: underline; /* Добавляем подчеркивание при наведении на ссылку */
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar bg-body-tertiary">
+<nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" style="margin-left: 45%;" href="http://127.0.0.1:8000/">
+    <a class="navbar-brand" href="#">
       ღ Склад "Любимый"
     </a>
   </div>
 </nav>
-{% for i in employee %}
-<ul>
-    <li>{{i.name1}}</li>
-    <li>{{i.name2}}</li>
-    <li>{{i.status}}</li>
-    <li><a href="{% url 'detail' slug=i.slug %}">Подробнее</a></li>
-</ul>
-{% endfor %}
+<div class="container mt-5">
+    {% for employee in employees %}
+    <ul class="employee-list">
+        <li><strong>Имя:</strong> {{ employee.name1 }}</li>
+        <li><strong>Фамилия:</strong> {{ employee.name2 }}</li>
+        <li><strong>Должность:</strong> {{ employee.status }}</li>
+        <li><a href="{% url 'detail' slug=employee.slug %}" class="employee-detail-link">Подробнее</a></li>
+    </ul>
+    {% empty %}
+    <p>Нет доступных сотрудников.</p>
+    {% endfor %}
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
