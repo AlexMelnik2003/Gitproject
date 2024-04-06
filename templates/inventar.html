@@ -14,11 +14,11 @@
     </a>
   </div>
 </nav>
-{% for i in employee %}
+{% for inventar in inventars %}
 <ul>
-    <li>{{i.name}}</li>
+    <li>{{inventars.name}}</li>
     <li><img src="{{ i.image.url }}" alt="Моя картинка" style="width: 100px; hieght: 100px;"></li>
-    <li>{{i.price}}</li>
+    <li>{{inventars.price}}</li>
     <li><button type="button" class="btn btn-info"><a href="{% url 'detail' slug=i.slug %}">Подробнее</a></button></li>
 </ul>
 {% endfor %}

@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class Employee(models.Model):
     name1 = models.CharField('Имя',max_length=100)
-    name2 = models.CharField('Фамилие',max_length=100)
+    name2 = models.CharField('Фамилия',max_length=100)
     status = models.CharField('Должность',max_length=50)
 
     def __str__(self):
