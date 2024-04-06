@@ -14,11 +14,11 @@
     </a>
   </div>
 </nav>
-{% for employee in employees %}
+{% for i in employee %}
 <ul>
-    <li>{{employees.name1}}</li>
-    <li>{{employees.name2}}</li>
-    <li>{{employees.status}}</li>
+    <li>{{i.name1}}</li>
+    <li>{{i.name2}}</li>
+    <li>{{i.status}}</li>
     <li><a href="{% url 'detail' slug=i.slug %}">Подробнее</a></li>
 </ul>
 {% endfor %}
