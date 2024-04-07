@@ -12,6 +12,6 @@ urlpatterns = [path('', views.main, name="main"),
                path('employee/', views.employee, name='employee'),
                path('inventar_forms/', views.inventar_forms, name='inventar_forms'),
                path('employee_forms/', views.employee_forms, name='employee_forms'),
-               path('inventar/', views.inventar1, name='inventar'),
+               path('inventar/', views.inventar, name='inventar'),
                path('<slug:slug>/', views.MyDetailView.as_view(), name='detail')
                ]

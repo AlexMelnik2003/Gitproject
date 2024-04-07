@@ -23,11 +23,11 @@ class UserRegister(CreateView):
 class MyDetailView(DetailView):
     model = Inventar
     template_name = 'detail/detail.html'
-    context_object_name = 'inventar'
+    context_object_name = 'detail'
     slug_field = 'slug'
 
 
-
+@login_required
 def employee_forms(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
@@ -38,7 +38,7 @@ def employee_forms(request):
         form = EmployeeForm()
     return render(request, 'forms/employee_forms.html', {'form': form})
 
-
+@login_required
 def inventar_forms(request):
     if request.method == 'POST':
         form = InventarForm(request.POST)
@@ -50,10 +50,10 @@ def inventar_forms(request):
     return render(request, 'forms/inventar_forms.html', {'form': form})
 @login_required
 def employee(request):
-    employee = Employee.objects.all()
-    return render(request, 'employee.html', {'employee': employee})
+    employees = Employee.objects.all()
+    return render(request, 'employee.html', {'employees': employees})
 
 @login_required
-def inventar1(request):
-    inventar = Inventar.objects.all()
-    return render(request, 'inventar.html', {'inventar': inventar})
+def inventar(request):
+    inventars = Inventar.objects.all()
+    return render(request, 'inventar.html', {'inventars': inventars})

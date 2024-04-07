@@ -6,7 +6,12 @@ class Employee(models.Model):
     name1 = models.CharField('Имя',max_length=100)
     name2 = models.CharField('Фамилия',max_length=100)
     status = models.CharField('Должность',max_length=50)
-
+    slug = models.SlugField(null=False, unique=True)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Генерация слага на основе заголовка статьи
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
     def __str__(self):
         return self.name2
 

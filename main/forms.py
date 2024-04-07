@@ -12,11 +12,14 @@ class InventarForm(ModelForm):
         fields = '__all__'
         exclude = ['slug']
 
+
 class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
         fields = '__all__'
         exclude = ['slug']
+
+
 
 
 class RegisterForm(UserCreationForm):
