@@ -16,9 +16,9 @@
 </nav>
 {% for inventar in inventars %}
 <ul>
-    <li>{{inventars.name}}</li>
+    <li>{{inventar.name}}</li>
     <li><img src="{{ i.image.url }}" alt="Моя картинка" style="width: 100px; hieght: 100px;"></li>
-    <li>{{inventars.price}}</li>
+    <li>{{inventar.price}}</li>
     <li><button type="button" class="btn btn-info"><a href="{% url 'detail' slug=detail.slug %}">Подробнее</a></button></li>
 </ul>
 {% endfor %}
