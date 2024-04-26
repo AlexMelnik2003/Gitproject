@@ -10,7 +10,7 @@ class Employee(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             # Генерация слага на основе заголовка статьи
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name1)
         super().save(*args, **kwargs)
     def __str__(self):
         return self.name2
