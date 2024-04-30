@@ -13,5 +13,6 @@ urlpatterns = [path('', views.main, name="main"),
                path('inventar_forms/', views.inventar_forms, name='inventar_forms'),
                path('employee_forms/', views.employee_forms, name='employee_forms'),
                path('inventar/', views.inventar, name='inventar'),
-               path('<slug:slug>/', views.MyDetailView.as_view(), name='detail')
+               path('<slug:slug>/', views.MyDetailView1.as_view(), name='detail'),
+
                ]

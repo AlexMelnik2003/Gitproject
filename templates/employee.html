@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+                <link rel="stylesheet" href="{% static 'css/rrr.css' %}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Сотрудники</title>
 </head>
@@ -26,14 +27,23 @@
     </div>
   </div>
 </nav>
-  <button type="button" class="btn btn-warning"><a href="{% url 'employee_forms' %}">Добавить</a></button>
+<br>
 {% for employee in employees %}
-<ul>
-    <li>{{employee.name1}}
-    {{employee.name2}}</li>
-    <li><a href="{% url 'detail' slug=employee.slug %}">Подробнее</a></li>
-</ul>
-{% endfor %}
+<div class="qwerty">
+<div class="card" style="width: 18rem;" bgcolor="#33CCCC">
+  <div class="card-body">
+
+    <h5 class="card-title">{{employee.name1}} {{employee.name2}}
+        </h5>
+    <p class="card-text">{{employee.status}} </p>
+
+  </div>
+</div>
+ {% endfor %}
+    </div>
+<br>
+<br>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

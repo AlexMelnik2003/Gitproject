@@ -20,7 +20,7 @@ class UserRegister(CreateView):
     success_url = reverse_lazy('login')
 
 
-class MyDetailView(DetailView):
+class MyDetailView1(DetailView):
     model = Inventar
     template_name = 'detail/detail.html'
     context_object_name = 'detail'
