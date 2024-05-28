@@ -22,8 +22,8 @@ class Inventar(models.Model):
     category = models.CharField('Категория',max_length=100)
     kod = models.IntegerField('Код')
     price = models.FloatField('Цена')
-    image = models.ImageField(upload_to='images/')
-    slug = models.SlugField(null=False, unique=True)
+    image = models.ImageField(upload_to='images/', blank=True)
+    slug = models.SlugField(null=False, unique=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

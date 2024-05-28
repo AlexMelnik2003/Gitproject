@@ -4,11 +4,10 @@ from django.contrib.auth.views import LoginView
 
 from . import views
 from django.urls import path
-
-
+from .views import SearchResultsView
 
 urlpatterns = [path('', views.main, name="main"),
-               path('register/',views.register, name='register'),
+               path('register/', views.register, name='register'),
                path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
                path('profile/', views.profile, name='profile'),
                path('employee/', views.employee, name='employee'),
@@ -19,6 +18,7 @@ urlpatterns = [path('', views.main, name="main"),
                path('inventar_ZA/', views.inventar_ZA, name='inventar_ZA'),
                path('inventar_price/', views.inventar_price, name='inventar_price'),
                path('inventar_reprice/', views.inventar_reprice, name='inventar_reprice'),
+               path('search/', SearchResultsView, name='search_results'),
                path('<slug:slug>/', views.MyDetailView1.as_view(), name='detail'),
 
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

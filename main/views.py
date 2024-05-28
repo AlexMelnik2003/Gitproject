@@ -7,7 +7,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import RegisterForm, EmployeeForm, InventarForm
 from .models import Employee, Inventar
 from django.shortcuts import render
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
+from django.db.models import Q
 
 
 def main(request):
@@ -99,3 +100,11 @@ def profile(request):
     profile = request.user.profile
     booked = Inventar.objects.filter(user=request.user)
     return render(request, 'profile.html', {'profile': profile, 'booked': booked})
+
+
+def SearchResultsView(request):
+    query = request.GET.get('q')
+    inventars = Inventar.objects.all().filter(
+        Q(name__icontains=query)
+    )
+    return render(request, 'inventar.html', {'inventars': inventars})
