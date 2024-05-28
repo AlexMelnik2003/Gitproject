@@ -21,7 +21,7 @@ class Inventar(models.Model):
     category = models.CharField('Категория',max_length=100)
     kod = models.IntegerField('Код')
     price = models.FloatField('Цена')
-    my_image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/')
     slug = models.SlugField(null=False, unique=True)
 
     def save(self, *args, **kwargs):
