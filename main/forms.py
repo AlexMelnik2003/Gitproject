@@ -23,7 +23,7 @@ class EmployeeForm(ModelForm):
 
 
 class RegisterForm(UserCreationForm):
-    captcha = ReCaptchaField()
+
 
     class Meta:
         model = User
