@@ -14,5 +14,6 @@ urlpatterns = [path('', views.main, name="main"),
                path('employee_forms/', views.employee_forms, name='employee_forms'),
                path('inventar/', views.inventar, name='inventar'),
                path('<slug:slug>/', views.MyDetailView1.as_view(), name='detail'),
+               path('profile/', views.profile, name='profile'),
 
                ]

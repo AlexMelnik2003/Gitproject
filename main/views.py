@@ -57,3 +57,14 @@ def employee(request):
 def inventar(request):
     inventars = Inventar.objects.all()
     return render(request, 'inventar.html', {'inventars': inventars})
+
+
+@login_required
+def profile(request):
+    profile = request.user.profile
+    booked = Inventar.objects.filter(user=request.user)
+    return render(request, 'profile.html', {'profile': profile, 'booked': booked})
+
+
+
+
