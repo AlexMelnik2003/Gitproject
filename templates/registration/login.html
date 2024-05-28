@@ -7,6 +7,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <title>Войти</title>
+
 </head>
 <body bgcolor="#000000">
 <h3>
@@ -20,6 +21,9 @@
             {{ form.as_p }}
             <button type="submit" class="btn btn-outline-success">Login</button>
         </form>
+      <br>
+      <button type="button" class="btn btn-outline-warning"><a class="nav-link text-black fw-bold" href="{% url 'register' %}">Зарегистрироваться</a></button>
+
     </div>
     </div>
 </div>
