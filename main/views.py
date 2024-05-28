@@ -13,11 +13,17 @@ def main(request):
     return render(request, "main.html")
 
 
-class UserRegister(CreateView):
-    model = User
-    template_name = 'registration/reg.html'
-    form_class = RegisterForm
-    success_url = reverse_lazy('login')
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+
+            login(request, user)
+            return redirect('/')
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/reg.html', {'form': form})
 
 
 class MyDetailView1(DetailView):
