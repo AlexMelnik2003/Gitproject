@@ -17,6 +17,19 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
+          <h2>Сортировать:</h2>
+          <li class="nav-item">
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_AZ' %}">От А до Я</a></button>
+        </li>
+          <li class="nav-item">
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_ZA' %}">От Я до А</a></button>
+        </li>
+          <li class="nav-item">
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_price' %}">по цене: от большего</a></button>
+        </li>
+          <li class="nav-item">
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_reprice' %}">по цене: от меньшего</a></button>
+        </li>
         <li class="nav-item">
           <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar' %}">Инвентарь</a></button>
         </li>

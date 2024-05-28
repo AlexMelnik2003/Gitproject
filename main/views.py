@@ -44,6 +44,7 @@ def employee_forms(request):
         form = EmployeeForm()
     return render(request, 'forms/employee_forms.html', {'form': form})
 
+
 @login_required
 def inventar_forms(request):
     if request.method == 'POST':
@@ -54,10 +55,13 @@ def inventar_forms(request):
     else:
         form = InventarForm()
     return render(request, 'forms/inventar_forms.html', {'form': form})
+
+
 @login_required
 def employee(request):
     employees = Employee.objects.all()
     return render(request, 'employee.html', {'employees': employees})
+
 
 @login_required
 def inventar(request):
@@ -66,11 +70,31 @@ def inventar(request):
 
 
 @login_required
+def inventar_AZ(request):
+    inventars = Inventar.objects.order_by('name')
+    return render(request, 'inventar.html', {'inventars': inventars})
+
+
+@login_required
+def inventar_ZA(request):
+    inventars = Inventar.objects.order_by('-name')
+    return render(request, 'inventar.html', {'inventars': inventars})
+
+
+@login_required
+def inventar_price(request):
+    inventars = Inventar.objects.order_by('price')
+    return render(request, 'inventar.html', {'inventars': inventars})
+
+
+@login_required
+def inventar_reprice(request):
+    inventars = Inventar.objects.order_by('-price')
+    return render(request, 'inventar.html', {'inventars': inventars})
+
+
+@login_required
 def profile(request):
     profile = request.user.profile
     booked = Inventar.objects.filter(user=request.user)
     return render(request, 'profile.html', {'profile': profile, 'booked': booked})
-
-
-
-
