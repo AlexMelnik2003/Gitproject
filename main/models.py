@@ -7,7 +7,8 @@ class Employee(models.Model):
     name1 = models.CharField('Имя',max_length=100)
     name2 = models.CharField('Фамилия',max_length=100)
     status = models.CharField('Должность',max_length=50)
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(null=False, unique=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_employee')
     def save(self, *args, **kwargs):
         if not self.slug:
             # Генерация слага на основе заголовка статьи
@@ -24,6 +25,7 @@ class Inventar(models.Model):
     price = models.FloatField('Цена')
     image = models.ImageField(upload_to='images/', blank=True)
     slug = models.SlugField(null=False, unique=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_inventar')
 
     def save(self, *args, **kwargs):
         if not self.slug:

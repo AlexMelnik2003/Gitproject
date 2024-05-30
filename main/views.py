@@ -61,37 +61,37 @@ def inventar_forms(request):
 
 @login_required
 def employee(request):
-    employees = Employee.objects.all()
+    employees = Employee.objects.all().filter(user=request.user)
     return render(request, 'employee.html', {'employees': employees})
 
 
 @login_required
 def inventar(request):
-    inventars = Inventar.objects.all()
+    inventars = Inventar.objects.all().filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
 
 
 @login_required
 def inventar_AZ(request):
-    inventars = Inventar.objects.order_by('name')
+    inventars = Inventar.objects.order_by('name').filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
 
 
 @login_required
 def inventar_ZA(request):
-    inventars = Inventar.objects.order_by('-name')
+    inventars = Inventar.objects.order_by('-name').filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
 
 
 @login_required
 def inventar_price(request):
-    inventars = Inventar.objects.order_by('price')
+    inventars = Inventar.objects.order_by('price').filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
 
 
 @login_required
 def inventar_reprice(request):
-    inventars = Inventar.objects.order_by('-price')
+    inventars = Inventar.objects.order_by('-price').filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
 
 
@@ -106,5 +106,5 @@ def SearchResultsView(request):
     query = request.GET.get('q')
     inventars = Inventar.objects.all().filter(
         Q(name__icontains=query)
-    )
+    ).filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
