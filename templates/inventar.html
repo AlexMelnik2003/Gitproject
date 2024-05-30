@@ -23,6 +23,9 @@
                     </form>
           </li>
           <li class="nav-item">
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_forms' %}"> Добавить позицию</a></button>
+        </li>
+          <li class="nav-item">
           <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_AZ' %}">От А до Я</a></button>
         </li>
           <li class="nav-item">
@@ -48,7 +51,9 @@
 
  {% for inventar in inventars %}
 <div class="card mb-3">
-  <img src="{{inventar.image.url}}" class="card-img-top" style="width: 450px; height: 250px" >
+    {% if inventar.image %}
+  <img src="{{ inventar.image.url }}" class="card-img-top" style="width: 450px; height: 250px" >
+    {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{inventar.name}}</h5>
 <button type="button" class="btn btn-info"><a href="{% url 'detail' inventar.id %}">Подробнее</a></button>

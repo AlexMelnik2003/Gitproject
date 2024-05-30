@@ -40,23 +40,27 @@ def employee_forms(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
             form.save()
             return redirect('employee')
     else:
         form = EmployeeForm()
-    return render(request, 'forms/employee_forms.html', {'form': form})
+    return render(request, 'employee_forms.html', {'form': form})
 
 
 @login_required
 def inventar_forms(request):
     if request.method == 'POST':
-        form = InventarForm(request.POST)
+        form = InventarForm(request.POST, request.FILES)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
             form.save()
             return redirect('inventar')
     else:
         form = InventarForm()
-    return render(request, 'forms/inventar_forms.html', {'form': form})
+    return render(request, 'inventar_forms.html', {'form': form})
 
 
 @login_required

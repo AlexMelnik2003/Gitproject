@@ -30,7 +30,7 @@ class Inventar(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             # Генерация слага на основе заголовка статьи
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name,self.kod)
         super().save(*args, **kwargs)
 
     def __str__(self):
