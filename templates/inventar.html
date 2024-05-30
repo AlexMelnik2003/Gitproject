@@ -18,26 +18,35 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
           <li>
-                    <form action="{% url 'search_results' %}" method="get">
-                        <input name="q" type="text" placeholder="Найти...">
+                    <form class="d-flex" action="{% url 'search_results' %}" method="get">
+                        <input name="q" class="form-control me-2" type="text" placeholder="Найти...">
+                         <button class="btn btn-outline-warning" type="submit">Search</button>
                     </form>
           </li>
           <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_forms' %}"> Добавить позицию</a></button>
+         <button type="button" class="btn btn-outline-warning" ><a class="nav-link text-white fw-bold" href="{% url 'inventar_forms' %}"> Добавить позицию</a></button>
+        </li>
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-warning" data-bs-toggle="dropdown" aria-expanded="false">
+      Сортировка
+    </button>
+    <ul class="dropdown-menu">
+      <li class="nav-item">
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_AZ' %}">От А до Я</a></button>
         </li>
           <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_AZ' %}">От А до Я</a></button>
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_ZA' %}">От Я до А</a></button>
         </li>
           <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_ZA' %}">От Я до А</a></button>
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_price' %}">по цене: от большего</a></button>
         </li>
           <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_price' %}">по цене: от большего</a></button>
+          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_reprice' %}">по цене: от меньшего</a></button>
         </li>
-          <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar_reprice' %}">по цене: от меньшего</a></button>
-        </li>
-        <li class="nav-item">
+
+    </ul>
+  </div>
+<li class="nav-item">
           <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar' %}">Инвентарь</a></button>
         </li>
         <li class="nav-item">
