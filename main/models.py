@@ -25,6 +25,9 @@ class Inventar(models.Model):
     price = models.FloatField('Цена')
     image = models.ImageField(upload_to='images/', blank=True)
     slug = models.SlugField(null=False, unique=True, blank=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
+    responsible = models.CharField('Имя ответственного сотрудника', max_length=100, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_inventar')
 
     def save(self, *args, **kwargs):

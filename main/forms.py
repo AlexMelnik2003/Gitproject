@@ -10,7 +10,7 @@ class InventarForm(ModelForm):
     class Meta:
         model = Inventar
         fields = '__all__'
-        exclude = ['slug', 'user',]
+        exclude = ['slug', 'user', 'created_at', 'updated_at', ]
 
 
 class EmployeeForm(ModelForm):
