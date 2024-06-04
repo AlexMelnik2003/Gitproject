@@ -20,6 +20,6 @@ urlpatterns = [path('', views.main, name="main"),
                path('inventar_reprice/', views.inventar_reprice, name='inventar_reprice'),
                path('search/', SearchResultsView, name='search_results'),
                path('inventar/<int:pk>', views.MyDetailView1.as_view(), name='detail'),
-
+               path('categories/', views.categories, name='categories'),
 
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

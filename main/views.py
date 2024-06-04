@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import RegisterForm, EmployeeForm, InventarForm
-from .models import Employee, Inventar
+from .models import Employee, Inventar, Category
 from django.shortcuts import render
 from django.views.generic import DetailView, CreateView, ListView
 from django.db.models import Q
@@ -125,10 +125,15 @@ def profile(request):
     booked = Inventar.objects.filter(user=request.user)
     return render(request, 'profile.html', {'profile': profile, 'booked': booked})
 
-
+@login_required
 def SearchResultsView(request):
     query = request.GET.get('q')
     inventars = Inventar.objects.all().filter(
         Q(name__icontains=query)
     ).filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
+
+@login_required
+def categories(request):
+    category = Category.objects.all().filter(user=request.user)
+    return render(request, 'category.html', {'category': category})
