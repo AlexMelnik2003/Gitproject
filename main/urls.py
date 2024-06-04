@@ -19,6 +19,7 @@ urlpatterns = [path('', views.main, name="main"),
                path('inventar_price/', views.inventar_price, name='inventar_price'),
                path('inventar_reprice/', views.inventar_reprice, name='inventar_reprice'),
                path('search/', SearchResultsView, name='search_results'),
+               path('inventar_detail/<int:category_id>', views.inventar_detail, name='inventar_detail'),
                path('inventar/<int:pk>', views.MyDetailView1.as_view(), name='detail'),
                path('categories/', views.categories, name='categories'),
 

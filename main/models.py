@@ -19,6 +19,9 @@ class Category(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_category')
     name1 = models.ForeignKey(Employee, blank=True, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.category
+
 
 class Inventar(models.Model):
     name = models.CharField('Название', max_length=100)
@@ -43,4 +46,3 @@ class Inventar(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-

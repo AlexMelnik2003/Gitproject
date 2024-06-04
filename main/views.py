@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import RegisterForm, EmployeeForm, InventarForm
@@ -137,3 +137,8 @@ def SearchResultsView(request):
 def categories(request):
     category = Category.objects.all().filter(user=request.user)
     return render(request, 'category.html', {'category': category})
+
+def inventar_detail(request, category_id):
+    category = get_object_or_404(Category, pk=category_id, user=request.user)
+    inventars = Inventar.objects.filter(category=category, user=request.user)
+    return render(request, 'inventar_detail.html', {'inventars': inventars, 'category': category})

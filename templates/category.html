@@ -59,7 +59,7 @@
     {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{category.category}}</h5>
-<button type="button" class="btn btn-info"><a href="{% url 'inventar'  %}">Подробнее</a></button>
+<button type="button" class="btn btn-info"><a href="{% url 'inventar_detail' category.id %}">Подробнее</a></button>
   </div>
 </div>
  {% endfor %}
