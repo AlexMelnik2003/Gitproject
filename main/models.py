@@ -13,16 +13,22 @@ class Employee(models.Model):
         return f'{self.name1} {self.name2}'
 
 
+class Category(models.Model):
+    image = models.ImageField(upload_to='images/', blank=True)
+    category = models.CharField('Категория', max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_category')
+    name1 = models.ForeignKey(Employee, blank=True, on_delete=models.CASCADE)
+
+
 class Inventar(models.Model):
     name = models.CharField('Название', max_length=100)
-    category = models.CharField('Категория', max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category_category')
     kod = models.IntegerField('Код')
     price = models.FloatField('Цена')
     image = models.ImageField(upload_to='images/', blank=True)
     slug = models.SlugField(null=False, unique=True, blank=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    name1 = models.OneToOneField(Employee, blank=True, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_inventar')
 
     def save(self, *args, **kwargs):
@@ -38,8 +44,3 @@ class Inventar(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-
-class Category(models.Model):
-    image = models.ImageField(upload_to='images/', blank=True)
-    category = models.OneToOneField(Inventar, on_delete=models.CASCADE, related_name='category_category')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_category')
