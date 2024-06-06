@@ -3,68 +3,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-            <link rel="stylesheet" href="{% static 'css/rrr.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/rrr.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Инвентарь</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <img src="https://www.freeiconspng.com/uploads/warehouse-inventory-icon-10.png" style="width: 5%">
-    <a class="navbar-brand" href="{% url 'main' %}">ღ Склад "Любимый"</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-          <li class="nav-item">
-         <button type="button" class="btn btn-outline-warning" ><a class="nav-link text-white fw-bold" href="{% url 'inventar_forms' %}"> Добавить позицию</a></button>
-        </li>
-<div class="btn-group" role="group">
-    <button type="button" class="btn btn-outline-warning" data-bs-toggle="dropdown" aria-expanded="false">
-      Сортировка
-    </button>
-    <ul class="dropdown-menu">
-      <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_AZ' %}">От А до Я</a></button>
-        </li>
-          <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_ZA' %}">От Я до А</a></button>
-        </li>
-          <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_price' %}">по цене: от большего</a></button>
-        </li>
-          <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold" href="{% url 'inventar_reprice' %}">по цене: от меньшего</a></button>
-        </li>
-
-    </ul>
-  </div>
-<li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar' %}">Инвентарь</a></button>
-        </li>
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'employee' %}">Наши сотрудники</a></button>
-        </li>
-      </ul>
+    <div class="container-fluid">
+        <img src="https://www.freeiconspng.com/uploads/warehouse-inventory-icon-10.png" style="width: 5%">
+        <a class="navbar-brand" href="{% url 'main' %}">ღ Склад "Любимый"</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h6 style="color: white;">Учетная запись</h6>
+        <h5><a style="color: white;">: {{user.username}}</a></h5>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
+                                                                             href="{% url 'category_forms' %}"> Добавить
+                        позицию</a></button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
+                                                                             href="{% url 'inventar' %}">Инвентарь</a>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
+                                                                             href="{% url 'employee' %}">Наши
+                        сотрудники</a></button>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
-
-
- {% for category in category %}
-<div class="card mb-3">
-    {% if category.image %}
-  <img src="{{ category.image.url }}" class="card-img-top" style="width: 450px; height: 250px" >
-    {% endif %}
-  <div class="card-body">
-    <h5 class="card-title">{{category.category}}</h5>
-<button type="button" class="btn btn-info"><a href="{% url 'inventar_detail' category.id %}">Подробнее</a></button>
-  </div>
+<div class="container-fluid mt-5">
+    <div class="row">
+        {% for category in category %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                {% if category.image %}
+                <img src="{{ category.image.url }}" class="card-img-top" style="width: 450px; height: 250px">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{category.category}}</h5>
+                    <button type="button" class="btn btn-info"><a href="{% url 'inventar_detail' category.id %}">Подробнее</a>
+        </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
- {% endfor %}
 <br>
 <br>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

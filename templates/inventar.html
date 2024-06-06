@@ -17,6 +17,8 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+              <h6 style="color: white;">Учетная запись</h6>
+      <h5><a style="color: white;">:  {{user.username}}</a></h5>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li>
@@ -61,7 +63,7 @@
                 </div>
                 <li class="nav-item">
                     <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
-                                                                             href="{% url 'inventar' %}">Инвентарь</a>
+                                                                             href="{% url 'inventar' %}">Вернуть изменения</a>
                     </button>
                 </li>
                 <li class="nav-item">

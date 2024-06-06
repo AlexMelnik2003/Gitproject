@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from .forms import RegisterForm, EmployeeForm, InventarForm
+from .forms import RegisterForm, EmployeeForm, InventarForm, CategoryForm
 from .models import Employee, Inventar, Category
 from django.shortcuts import render
 from django.views.generic import DetailView, CreateView, ListView
@@ -82,6 +82,18 @@ def inventar_forms(request):
         form = InventarForm()
     return render(request, 'inventar_forms.html', {'form': form})
 
+@login_required
+def category_forms(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user
+            form.save()
+            return redirect('categories')
+    else:
+        form = CategoryForm()
+    return render(request, 'category_forms.html', {'form': form})
 
 @login_required
 def employee(request):
