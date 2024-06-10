@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -21,6 +21,8 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            group = Group.objects.get(name='Глава')
+            user.groups.add(group)
 
             login(request, user)
             return redirect('/')
@@ -55,13 +57,19 @@ class MyDetailView1(DetailView):
         return super().get(request, *args, **kwargs)
 
 
+from django.contrib.auth.decorators import user_passes_test
+
+
+def is_head(user):
+    return user.groups.filter(name='Глава').exists()
+
+
 @login_required
+@user_passes_test(is_head)
 def employee_forms(request):
     if request.method == 'POST':
-        form = EmployeeForm(request.POST)
+        form = EmployeeForm(request.POST, user=request.user)
         if form.is_valid():
-            form = form.save(commit=False)
-            form.user = request.user
             form.save()
             return redirect('employee')
     else:
@@ -82,6 +90,7 @@ def inventar_forms(request):
         form = InventarForm()
     return render(request, 'inventar_forms.html', {'form': form})
 
+
 @login_required
 def category_forms(request):
     if request.method == 'POST':
@@ -95,9 +104,11 @@ def category_forms(request):
         form = CategoryForm()
     return render(request, 'category_forms.html', {'form': form})
 
+
 @login_required
 def employee(request):
     employees = Employee.objects.all().filter(user=request.user)
+    print(employees)
     return render(request, 'employee.html', {'employees': employees})
 
 
@@ -137,6 +148,7 @@ def profile(request):
     booked = Inventar.objects.filter(user=request.user)
     return render(request, 'profile.html', {'profile': profile, 'booked': booked})
 
+
 @login_required
 def SearchResultsView(request):
     query = request.GET.get('q')
@@ -145,10 +157,12 @@ def SearchResultsView(request):
     ).filter(user=request.user)
     return render(request, 'inventar.html', {'inventars': inventars})
 
+
 @login_required
 def categories(request):
     category = Category.objects.all().filter(user=request.user)
     return render(request, 'category.html', {'category': category})
+
 
 def inventar_detail(request, category_id):
     category = get_object_or_404(Category, pk=category_id, user=request.user)
