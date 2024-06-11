@@ -116,7 +116,7 @@ def employee(request):
 @login_required
 def inventar(request):
     inventars = Inventar.objects.all().filter(user=request.user)
-    paginator = Paginator(inventars, 5)
+    paginator = Paginator(inventars, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'inventar.html', {'page_obj': page_obj})
@@ -125,25 +125,37 @@ def inventar(request):
 @login_required
 def inventar_AZ(request):
     inventars = Inventar.objects.order_by('name').filter(user=request.user)
-    return render(request, 'inventar.html', {'inventars': inventars})
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar.html', {'page_obj': page_obj})
 
 
 @login_required
 def inventar_ZA(request):
     inventars = Inventar.objects.order_by('-name').filter(user=request.user)
-    return render(request, 'inventar.html', {'inventars': inventars})
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar.html', {'page_obj': page_obj})
 
 
 @login_required
 def inventar_price(request):
     inventars = Inventar.objects.order_by('price').filter(user=request.user)
-    return render(request, 'inventar.html', {'inventars': inventars})
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar.html', {'page_obj': page_obj})
 
 
 @login_required
 def inventar_reprice(request):
     inventars = Inventar.objects.order_by('-price').filter(user=request.user)
-    return render(request, 'inventar.html', {'inventars': inventars})
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar.html', {'page_obj': page_obj})
 
 
 @login_required
@@ -159,7 +171,10 @@ def SearchResultsView(request):
     inventars = Inventar.objects.all().filter(
         Q(name__icontains=query)
     ).filter(user=request.user)
-    return render(request, 'inventar.html', {'inventars': inventars})
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar.html', {'page_obj': page_obj})
 
 
 @login_required
@@ -171,4 +186,7 @@ def categories(request):
 def inventar_detail(request, category_id):
     category = get_object_or_404(Category, pk=category_id, user=request.user)
     inventars = Inventar.objects.filter(category=category, user=request.user)
-    return render(request, 'inventar_detail.html', {'inventars': inventars, 'category': category})
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
