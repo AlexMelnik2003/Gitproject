@@ -38,27 +38,29 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li class="nav-item">
+                             {% for inventar in page_obj %}
                             <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold"
-                                                                                     href="{% url 'inventar_AZ' %}">От А
+                                                                                     href="{% url 'inventar_AZ_cat' category.id %}">От А
                                 до Я</a></button>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold"
-                                                                                     href="{% url 'inventar_ZA' %}">От Я
+                                                                                     href="{% url 'inventar_ZA_cat' category.id %}">От Я
                                 до А</a></button>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold"
-                                                                                     href="{% url 'inventar_price' %}">по
+                                                                                     href="{% url 'inventar_price_cat' category.id %}">по
                                 цене: от большего</a></button>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-outline-warning"><a class="nav-link text-dark fw-bold"
-                                                                                     href="{% url 'inventar_reprice' %}">по
+                                                                                     href="{% url 'inventar_reprice_cat' category.id %}">по
                                 цене: от меньшего</a></button>
                         </li>
 
                     </ul>
+                       {% endfor %}
                 </div>
                 <li class="nav-item">
                     <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"

@@ -157,7 +157,44 @@ def inventar_reprice(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'inventar.html', {'page_obj': page_obj})
 
+@login_required
+def inventar_AZ_cat(request, category_id):
+    category = get_object_or_404(Category, pk=category_id, user=request.user)
+    inventars = Inventar.objects.order_by('name').filter(category=category, user=request.user)
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
 
+
+@login_required
+def inventar_ZA_cat(request, category_id):
+    category = get_object_or_404(Category, pk=category_id, user=request.user)
+    inventars = Inventar.objects.order_by('-name').filter(category=category, user=request.user)
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
+
+
+@login_required
+def inventar_price_cat(request, category_id):
+    category = get_object_or_404(Category, pk=category_id, user=request.user)
+    inventars = Inventar.objects.order_by('price').filter(category=category, user=request.user)
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
+
+
+@login_required
+def inventar_reprice_cat(request, category_id):
+    category = get_object_or_404(Category, pk=category_id, user=request.user)
+    inventars = Inventar.objects.order_by('-price').filter(category=category, user=request.user)
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
 @login_required
 def profile(request):
     profile = request.user.profile
