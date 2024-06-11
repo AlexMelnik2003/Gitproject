@@ -31,16 +31,10 @@ class Inventar(models.Model):
     kod = models.IntegerField('Код')
     price = models.FloatField('Цена')
     image = models.ImageField(upload_to='images/', blank=True)
-    slug = models.SlugField(null=False, unique=True, blank=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_inventar')
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            # Генерация слага на основе заголовка статьи
-            self.slug = slugify(self.name, self.kod)
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
