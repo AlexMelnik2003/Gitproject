@@ -164,7 +164,7 @@ def inventar_AZ_cat(request, category_id):
     paginator = Paginator(inventars, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
 
 
 @login_required
@@ -174,7 +174,7 @@ def inventar_ZA_cat(request, category_id):
     paginator = Paginator(inventars, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
 
 
 @login_required
@@ -184,7 +184,7 @@ def inventar_price_cat(request, category_id):
     paginator = Paginator(inventars, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
 
 
 @login_required
@@ -194,7 +194,7 @@ def inventar_reprice_cat(request, category_id):
     paginator = Paginator(inventars, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'inventar_detail.html', {'page_obj': page_obj})
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
 @login_required
 def profile(request):
     profile = request.user.profile
