@@ -3,55 +3,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-                <link rel="stylesheet" href="{% static 'css/rrr.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/rrr.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        .pagination {
+            margin-left: auto;
+            margin-right: auto;
+            width: 6em
+
+
+
+
+    </style>
     <title>Сотрудники</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <img src="https://www.freeiconspng.com/uploads/warehouse-inventory-icon-10.png" style="width: 5%">
-    <a class="navbar-brand" href="{% url 'main' %}">ღ Склад "Любимый"</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-            <h6 style="color: white;">Учетная запись</h6>
-      <h5><a style="color: white;">:  {{user.username}}</a></h5>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-          <li class="nav-item">
-            <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'employee_forms' %}"> Добавить сотрудника</a></button>
-          </li>
-          <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'categories' %}">Категории инвентаря</a></button>
-        </li>
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'inventar' %}">Инвентарь</a></button>
-        </li>
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold" href="{% url 'employee' %}">Наши сотрудники</a></button>
-        </li>
-      </ul>
+    <div class="container-fluid">
+        <img src="https://www.freeiconspng.com/uploads/warehouse-inventory-icon-10.png" style="width: 5%">
+        <a class="navbar-brand" href="{% url 'main' %}">ღ Склад "Любимый"</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h6 style="color: white;">Учетная запись</h6>
+        <h5><a style="color: white;">: {{user.username}}</a></h5>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form class="d-flex" action="{% url 'search_results_employee' %}" method="get">
+                        <input name="q" class="form-control me-2" type="text" placeholder="Найти...">
+                        <button class="btn btn-outline-warning" type="submit">Search</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
+                                                                             href="{% url 'employee_forms' %}"> Добавить
+                        сотрудника</a></button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
+                                                                             href="{% url 'categories' %}">Категории
+                        инвентаря</a></button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-warning"><a class="nav-link text-white fw-bold"
+                                                                             href="{% url 'inventar' %}">Инвентарь</a>
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
 <br>
-{% for employee in employees %}
-<div class="qwerty">
-<div class="card" style="width: 18rem;" bgcolor="#33CCCC">
-  <div class="card-body">
+<div class="container-fluid mt-5">
+    <div class="row">
+        {% for employee in page_obj %}
+        <div class="col-md-4 mb-4">
+            <div class="card-body">
+                <div class="card" style="width: 18rem;" bgcolor="#33CCCC">
+        <div class="card-body">
 
-    <h5 class="card-title">{{employee.name1}} {{employee.name2}}
-        </h5>
-    <p class="card-text">{{employee.status}} </p>
+            <h5 class="card-title" style="text-align: center;">{{employee.name1}} {{employee.name2}}
+            </h5>
+            <h6 class="card-text">{{employee.status}} </h6>
 
-  </div>
-</div>
- {% endfor %}
+        </div>
     </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 <br>
-<br>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <button type="button" class="btn btn-outline-dark"><a class="nav-link text-white fw-bold" href="?page=1">Первая страница</a></button>
+<button type="button" class="btn btn-outline-warning"><a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a></button>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <button type="button" class="btn btn-outline-warning"><a
+                href="?page={{ page_obj.next_page_number }}">Следующая</a></button>
+
+        <button type="button" class="btn btn-outline-dark"><a
+                href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></button>
+        {% endif %}
+    </span>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

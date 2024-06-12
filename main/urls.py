@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 
 from . import views
 from django.urls import path
-from .views import SearchResultsView
+from .views import SearchResultsView, SearchResultsView_Detail, SearchResultsView_Employee
 
 urlpatterns = [path('', views.main, name="main"),
                path('register/', views.register, name='register'),
@@ -22,9 +22,13 @@ urlpatterns = [path('', views.main, name="main"),
                path('inventar_detail_AZ/<int:category_id>', views.inventar_AZ_cat, name='inventar_AZ_cat'),
                path('inventar_detail_ZA/<int:category_id>', views.inventar_ZA_cat, name='inventar_ZA_cat'),
                path('inventar_detail_price/<int:category_id>', views.inventar_price_cat, name='inventar_price_cat'),
-               path('inventar_detail_reprice/<int:category_id>', views.inventar_reprice_cat, name='inventar_reprice_cat'),
+               path('inventar_detail_reprice/<int:category_id>', views.inventar_reprice_cat,
+                    name='inventar_reprice_cat'),
                path('inventar_detail/<int:category_id>', views.inventar_detail, name='inventar_detail'),
                path('inventar/<int:pk>', views.MyDetailView1.as_view(), name='detail'),
                path('categories/', views.categories, name='categories'),
                path('search/', SearchResultsView, name='search_results'),
+               path('search_in_categories/<int:category_id>', SearchResultsView_Detail, name='search_results_detail'),
+               path('search_in_employee/', SearchResultsView_Employee, name='search_results_employee'),
+
                ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

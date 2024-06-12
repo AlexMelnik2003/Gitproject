@@ -109,8 +109,10 @@ def category_forms(request):
 @login_required
 def employee(request):
     employees = Employee.objects.all().filter(user=request.user)
-    print(employees)
-    return render(request, 'employee.html', {'employees': employees})
+    paginator = Paginator(employees, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'employee.html', {'page_obj': page_obj})
 
 
 @login_required
@@ -227,3 +229,27 @@ def inventar_detail(request, category_id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
+
+
+@login_required
+def SearchResultsView_Detail(request, category_id):
+    query = request.GET.get('q')
+    category = get_object_or_404(Category, pk=category_id, user=request.user)
+    inventars = Inventar.objects.filter(category=category, user=request.user).filter(
+        Q(name__icontains=query)
+    )
+    paginator = Paginator(inventars, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
+
+@login_required
+def SearchResultsView_Employee(request):
+    query = request.GET.get('q')
+    employees = Employee.objects.all().filter(
+        Q(name1__icontains=query) | Q(name2__icontains=query)
+    ).filter(user=request.user)
+    paginator = Paginator(employees, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'employee.html', {'page_obj': page_obj})
