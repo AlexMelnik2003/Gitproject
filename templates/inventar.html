@@ -18,6 +18,8 @@
             width: 6em
 
 
+
+
     </style>
 </head>
 <body>
@@ -29,6 +31,9 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="d-flex align-items-center ms-3">
+            <h6 class="mb-0 text-white">Учетная запись: {{ user.username }}</h6>
+        </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -56,7 +61,10 @@
                     <a class="nav-link text-white fw-bold" href="{% url 'inventar' %}">Вернуть изменения</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fw-bold" href="{% url 'employee' %}">Наши сотрудники</a>
+                    <a class="nav-link text-white fw-bold" href="{% url 'employee' %}">Сотрудники</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-bold" href="{% url 'categories' %}">Категории товаров</a>
                 </li>
             </ul>
         </div>

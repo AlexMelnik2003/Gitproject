@@ -53,7 +53,7 @@ class MyDetailView1(DetailView):
         if "delete" in request.POST:
             self.object.delete()
 
-            return HttpResponseRedirect(reverse_lazy('inventar'))
+            return HttpResponseRedirect(reverse_lazy('categories'))
         #
         return super().get(request, *args, **kwargs)
 
@@ -197,11 +197,9 @@ def inventar_reprice_cat(request, category_id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
-@login_required
+
 def profile(request):
-    profile = request.user.profile
-    booked = Inventar.objects.filter(user=request.user)
-    return render(request, 'profile.html', {'profile': profile, 'booked': booked})
+    return render(request, 'profile.html')
 
 
 @login_required
