@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Инвентарь</title>
+      <link rel="stylesheet" href="{% static 'css/rrr.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -16,6 +18,7 @@
             margin-left: auto;
             margin-right: auto;
             width: 6em
+
 
 
     </style>
@@ -79,24 +82,32 @@
         {% endfor %}
     </div>
 </div>
+
 <div class="pagination">
+
     <span class="step-links">
         {% if page_obj.has_previous %}
-        <button type="button" class="btn btn-outline-dark"><a class="nav-link text-white fw-bold" href="?page=1">Первая страница</a></button>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+<button type="button" class="btn btn-outline-dark"><a class="nav-link text-yellow fw-bold" href="?page=1">Первая</a></button>
 <button type="button" class="btn btn-outline-warning"><a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a></button>
+</div>
+
 
         {% endif %}
-
-        <span class="current">
+<br>
+        <span class="current" class="qwerty">
             Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
         </span>
-
+<br>
         {% if page_obj.has_next %}
-        <button type="button" class="btn btn-outline-warning"><a
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+ <button type="button"  class="btn btn-outline-warning"><a
                 href="?page={{ page_obj.next_page_number }}">Следующая</a></button>
 
         <button type="button" class="btn btn-outline-dark"><a
                 href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></button>
+        </div>
+
         {% endif %}
     </span>
 </div>
