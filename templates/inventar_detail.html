@@ -12,11 +12,9 @@
             height: 500px;
             object-fit: cover;
         }
-        .pagination {
-            margin-left: auto;
-            margin-right: auto;
-            width: 6em
-
+.buttonorange{ color: black;}
+.buttonblack{ color: orange;}
+        body{background: linear-gradient(107deg, rgb(255, 67, 5) 11.1%, rgb(245, 135, 0) 95.3%);}
 
     </style>
     <title>Инвентарь</title>
@@ -81,27 +79,44 @@
         {% endfor %}
     </div>
 </div>
-<div class="pagination">
-    <span class="step-links">
+<br><div class="qwerty">
+        <span class="current" style="text-align: center; width: 60em;">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span></div>
+<div class="qwerty">
+
+    <br>
         {% if page_obj.has_previous %}
-        <button type="button" class="btn btn-outline-dark"><a class="nav-link text-white fw-bold" href="?page=1">Первая страница</a></button>
-<button type="button" class="btn btn-outline-warning"><a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a></button>
+ <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+
+ <button type="button" class="btn btn-dark"><a class="nav-link text-warning fw-bold" href="?page=1"><span class="buttonblack">Первая страница</span></a></button>
+<button type="button" class="btn btn-warning"><a class="nav-link text-black fw-bold" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a></button>
+</div>
+    <span class="step-links">
+
+
 
         {% endif %}
 
-        <span class="current">
-            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
-        </span>
+
 
         {% if page_obj.has_next %}
-        <button type="button" class="btn btn-outline-warning"><a
-                href="?page={{ page_obj.next_page_number }}">Следующая</a></button>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-warning"><a class="nav-link text-black fw-bold"
+                    href="?page={{ page_obj.next_page_number }}">Следующая</a></button>
 
-        <button type="button" class="btn btn-outline-dark"><a
+        <button type="button" class="btn btn-dark"><a class="nav-link text-warning fw-bold"
                 href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></button>
+        </div>
+
         {% endif %}
     </span>
 </div>
+</div>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
