@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import RegisterForm, EmployeeForm, InventarForm, CategoryForm
-from .models import Employee, Inventar, Category
+from .models import Employee, Inventar, Category, Images, Profile
 from django.shortcuts import render
 from django.views.generic import DetailView, CreateView, ListView
 from django.db.models import Q
@@ -199,7 +199,8 @@ def inventar_reprice_cat(request, category_id):
     return render(request, 'inventar_detail.html', {'page_obj': page_obj, 'category': category})
 
 def profile(request):
-    return render(request, 'profile.html')
+    profile = Profile.objects.all()
+    return render(request, 'profile.html', {'profile': profile})
 
 
 @login_required

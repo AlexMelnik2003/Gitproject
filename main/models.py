@@ -38,10 +38,16 @@ class Inventar(models.Model):
     def __str__(self):
         return self.name
 
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-
 class Images(models.Model):
     image = models.ImageField(upload_to='images/', blank=True)
+
+class Profile(models.Model):
+    main = models.CharField(max_length=100)
+    disc = models.CharField(max_length=100)
+    text = models.CharField(max_length=100)
+    imag = models.ForeignKey(Images, on_delete=models.CASCADE, related_name='imageernkol')
+
+
+
+
+
