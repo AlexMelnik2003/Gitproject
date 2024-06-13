@@ -75,6 +75,10 @@
             <img src="https://www.freeiconspng.com/uploads/warehouse-inventory-icon-10.png" alt="Logo">
             ღ Склад "Любимый"
         </a>
+        <div class="d-flex align-items-center ms-3">
+                <h6 class="mb-0 text-white">Учетная запись</h6>
+                <h5 class="mb-0 text-white ms-2">: {{ user.username }}</h5>
+            </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -93,14 +97,11 @@
                 </li>
                 <li class="nav-item">
                     <button type="button" class="btn btn-outline-warning">
-                        <a class="nav-link text-white fw-bold" href="{% url 'employee' %}">Наши сотрудники</a>
+                        <a class="nav-link text-white fw-bold" href="{% url 'employee' %}">Сотрудники</a>
                     </button>
                 </li>
             </ul>
-            <div class="d-flex align-items-center ms-3">
-                <h6 class="mb-0 text-white">Учетная запись</h6>
-                <h5 class="mb-0 text-white ms-2">: {{ user.username }}</h5>
-            </div>
+
         </div>
     </div>
 </nav>
