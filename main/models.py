@@ -8,11 +8,11 @@ class Employee(models.Model):
     name2 = models.CharField('Фамилия', max_length=100)
     status = models.CharField('Должность', max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='employee_account')
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_employees', verbose_name="Зарегистрирован Главой")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_employees',
+                                   verbose_name="Зарегистрирован Главой")
 
     def __str__(self):
         return f'{self.name1} {self.name2}'
-
 
 
 class Category(models.Model):
@@ -35,10 +35,13 @@ class Inventar(models.Model):
     updated_at = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registration_inventar')
 
-
     def __str__(self):
         return self.name
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Images(models.Model):
+    image = models.ImageField(upload_to='images/', blank=True)
