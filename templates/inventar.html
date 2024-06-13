@@ -15,7 +15,9 @@
         .pagination {
             margin-left: auto;
             margin-right: auto;
-            width: 6em
+            width: 40em
+
+
 
 
 
@@ -95,16 +97,19 @@
 
         {% endif %}
 
-        <span class="current">
+        <span class="current" style="text-align: center; width: 60em;">
             Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
         </span>
 
         {% if page_obj.has_next %}
-        <button type="button" class="btn btn-outline-warning"><a
-                href="?page={{ page_obj.next_page_number }}">Следующая</a></button>
+        <div style="width: 80em;">
+            <button type="button" class="btn btn-outline-warning"><a
+                    href="?page={{ page_obj.next_page_number }}">Следующая</a></button>
 
         <button type="button" class="btn btn-outline-dark"><a
                 href="?page={{ page_obj.paginator.num_pages }}">Последняя</a></button>
+        </div>
+
         {% endif %}
     </span>
 </div>
