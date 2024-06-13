@@ -118,7 +118,7 @@ def employee(request):
 @login_required
 def inventar(request):
     inventars = Inventar.objects.all().filter(user=request.user)
-    paginator = Paginator(inventars, 3)
+    paginator = Paginator(inventars, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'inventar.html', {'page_obj': page_obj})
