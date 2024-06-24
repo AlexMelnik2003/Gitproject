@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^x6v+2k#-s6%qjz)9g%2&22qn914)^jgxz*l$)=-9_5hi0o*(c
 DEBUG = True
 
 ALLOWED_HOSTS = ['sklad.lubumy.webtm.ru',
-                 'www.sklad.lubumy.webtm.ru', ]
+                 'www.sklad.lubumy.webtm.ru']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://sklad.lubumy.webtm.ru',
@@ -82,8 +82,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'default_db',
         'USER': 'gen_user',
-        'PASSWORD': 'bP:i(VKO?0}2z?',
-        'HOST': '192.168.0.4',
+        'PASSWORD': '~4jX/;\;^Bmr!0',
+        'HOST': '188.225.9.237',
         'PORT': '5432',
     }
 }
