@@ -44,7 +44,7 @@ class Images(models.Model):
 class Profile(models.Model):
     main = models.CharField(max_length=100)
     disc = models.CharField(max_length=100)
-    text = models.CharField(max_length=100)
+    text = models.CharField(max_length=250)
     imag = models.ForeignKey(Images, on_delete=models.CASCADE, related_name='imageernkol')
 
 
