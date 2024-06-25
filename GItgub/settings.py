@@ -28,8 +28,8 @@ ALLOWED_HOSTS = ['sklad.lubumy.webtm.ru',
                  'www.sklad.lubumy.webtm.ru', '*']
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://nash.sclad-lubimy.tw1.ru/',
-    'http://www.nash.sclad-lubimy.tw1.ru/',
+    'https://nash.sclad-lubimy.tw1.ru/',
+    'https://www.nash.sclad-lubimy.tw1.ru/',
 ]
 # Application definition
 
